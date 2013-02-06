@@ -8,18 +8,18 @@ function call(args) {
 				{ title: 'Call history', hasChild: true, test: 'ui/handheld/tizen/platform/call/history' }
 			]
 		});
-	
+
 	tableview.addEventListener('click', function(e) {
 		if (e.rowData.test) {
 			var ExampleWindow = require(e.rowData.test),
 				win = new ExampleWindow({ title: e.rowData.title, containingTab: args.containingTab });
-			
+
 			args.containingTab.open(win, { animated: true });
 		}
 	});
-	
+
 	self.add(tableview);
-	
+
 	return self;
 }
 

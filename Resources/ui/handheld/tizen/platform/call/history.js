@@ -8,7 +8,7 @@ function history(args) {
 				{ title: 'Listeners', test: 'ui/handheld/tizen/platform/call/listeners' },
 			]
 		});
-	
+
 	tableview.addEventListener('click', function(e) {
 		if (e.rowData.test) {
 			var ExampleWindow = require(e.rowData.test),
@@ -17,9 +17,9 @@ function history(args) {
 			args.containingTab.open(win, { animated: true });
 		}
 	});
-	
+
 	self.add(tableview);
-	
+
 	return self;
 }
 

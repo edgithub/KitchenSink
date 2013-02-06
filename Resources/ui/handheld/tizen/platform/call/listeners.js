@@ -29,20 +29,20 @@ function listeners() {
 					Ti.API.info(newItems[i].remoteParties[0].remoteParty + ': ' + newItems[i].startTime);
 
 					tableView.appendRow({ title: newItems[i].remoteParties[0].remoteParty + ': ' + newItems[i].startTime });
-		        }
+				}
 			},
-		    onchanged: function(changedItems) {
+			onchanged: function(changedItems) {
 				var i = 0,
 					itemsCount = changedItems.length;
 		    	
 				Ti.API.info('Items changed');
 
-		    	for (; i < itemsCount; i++) {
-		    		Ti.API.info(changedItems[i].remoteParties[0].remoteParty + ': ' + changedItems[i].direction);
+				for (; i < itemsCount; i++) {
+					Ti.API.info(changedItems[i].remoteParties[0].remoteParty + ': ' + changedItems[i].direction);
 
-		    		tableView.appendRow({ title: changedItems[i].remoteParties[0].remoteParty + ': ' + changedItems[i].direction });
-		    	}
-		    }
+					tableView.appendRow({ title: changedItems[i].remoteParties[0].remoteParty + ': ' + changedItems[i].direction });
+				}
+			}
 		};
 
 		addListenerBtn.addEventListener('click', function(e) {
@@ -55,7 +55,7 @@ function listeners() {
 				var handle = tizen.call.history.addListener(onListenerCB);
 
 				addListenerBtn.enabled = false;
-				
+
 				alertDialog.message = 'Listener added';
 				alertDialog.show();
 				

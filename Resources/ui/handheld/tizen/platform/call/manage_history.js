@@ -53,10 +53,10 @@ function manageHistory() {
 						    title: 'The following error occurred: ',
 						    ok: 'Ok'
 						}).show();
-					}					
+					}
 				}
 			}
-			
+
 			function removeAll(e) {
 				tizen.call.history.removeAll(
 					function() {
@@ -75,31 +75,31 @@ function manageHistory() {
 					}
 				);
 			}
-			
+
 			tableView.addEventListener('click', removeRow);
 			removeAllHistoryBtn.addEventListener('click', removeAll);
 						
 			for (; i < resultsCount; i++) {
 				tableView.appendRow({ title: results[i].remoteParties[0].remoteParty + ' (' + results[i].direction + ')' });
 			}
-			
+
 			win.add(tableView);
 			win.add(removeAllHistoryBtn);
 		} else if (resultsCount === 0) {
 			win.add(emptyHistoryLbl);
 		}
-    }
+	}
 
-    function onError(error) {
-    	Ti.UI.createAlertDialog({
-    		message: exep.message,
-    		title: 'The following error occurred: ',
-    		ok: 'Ok'
+	function onError(error) {
+		Ti.UI.createAlertDialog({
+			message: exep.message,
+			title: 'The following error occurred: ',
+			ok: 'Ok'
 		}).show();
-    }
-	
+	}
+
 	tizen.call.history.find(onSuccess, onError, filter, sortMode);
-	
+
 	return win;
 }
 

@@ -21,30 +21,30 @@ function callInProgress() {
 			top: 90,
 			left: 10
 		});
-	
+
 	checkCallStatusBtn.addEventListener('click', function(e) {
 		try {
 			var status = tizen.call.isCallInProgress() ? 'Call in progress' : 'No call';
 			
 			callStatusTextLbl.text = status;
 			
-		    Ti.API.info('Current call status: ' + status);
-		} catch (exc) {			
+			Ti.API.info('Current call status: ' + status);
+		} catch (exc) {	
 			Ti.UI.createAlertDialog({
-			    message: exc.message,
-			    title: 'Exception has been thrown',
-			    ok: 'Ok'
+				message: exc.message,
+				title: 'Exception has been thrown',
+				ok: 'Ok'
 			}).show();
-			
+
 			Ti.API.error('error: ' + exc.message);
 		}
 	});
-	
+
 	win.add(infoLbl);
 	win.add(callStatusLbl);
 	win.add(callStatusTextLbl);
 	win.add(checkCallStatusBtn);
-	
+
 	return win;
 }
 
