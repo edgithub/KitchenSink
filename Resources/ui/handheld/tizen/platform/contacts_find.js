@@ -5,7 +5,7 @@ function find_contacts(args) {
 		contactsTable = Ti.UI.createTableView({
 			top: 50
 		});
-	
+
 	var searchInput = Ti.UI.createTextField({
 		top: 10,
 		left: 10,
@@ -14,7 +14,7 @@ function find_contacts(args) {
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 	self.add(searchInput);
-	
+
 	var searchButton = Ti.UI.createButton({
 		top: 10,
 		left: '70%',
@@ -23,7 +23,7 @@ function find_contacts(args) {
 		title: 'Search'
 	});
 	self.add(searchButton);
-	
+
 	searchButton.addEventListener('click', function(e){
 		Ti.Contacts.Tizen.getPeopleWithName(searchInput.value, function(persons) {
 			var contactsCount = persons.length,
@@ -62,7 +62,7 @@ function find_contacts(args) {
 				row.add(contactLabel);
 				row.add(viewButton);
 				row.add(editButton);
-				
+
 				(function(index){
 					var wnd;
 					viewButton.addEventListener('click', function(e){
@@ -73,21 +73,21 @@ function find_contacts(args) {
 						wnd = new  (require('ui/handheld/tizen/platform/contact_edit'))({ title: 'Edit contact details', contactId: persons[index].id });
 						args.containingTab.open(wnd, { animated: true });
 						contactsTable.data = [];
-						searchInput.value = "";						
+						searchInput.value = "";
 					});
 				})(i);
-				
+
 				tableData.push(row);
 			}
-			
+
 			contactsTable.data = tableData;
 		}, function(err){
 			alert('Error occured: ' = err);
 		});
 	});
-	
+
 	self.add(contactsTable);
-	
+
 	return self;
 }
 module.exports = find_contacts;

@@ -12,7 +12,7 @@ function view_contact(args) {
 		address = (person.address.home &&  (person.address.home.length > 0)) ? person.address.home[0] : {},
 		email = (person.email.home && (person.email.home.length > 0)) ? person.email.home[0] : '',
 		phoneNumber = (person.phone.home && (person.phone.home.length > 0)) ? person.phone.home[0] : '';		
-	
+
 	// Add controls for first name
 	var firstNameLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -23,19 +23,19 @@ function view_contact(args) {
 		text: 'First name:'
 	});	
 	win.add(firstNameLabel);
-	
+
 	var firstNameLabelVal = Ti.UI.createLabel({
 		top: top,
 		left: inputLeftPos,
 		width: inputWidth,
 		height: height,
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-		text: person.firstName || ''		
+		text: person.firstName || ''
 	});
 	win.add(firstNameLabelVal);
-	
+
 	top += height + 10;
-	
+
 	// Add controls for last name
 	var lastNameLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -46,19 +46,19 @@ function view_contact(args) {
 		text: 'Last name:'
 	}); 
 	win.add(lastNameLabel);
-	
+
 	var lastNameLabelVal = Ti.UI.createLabel({
 		top: top,
 		left: inputLeftPos,
 		width: inputWidth,
 		height: height,
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-		text: person.lastName || ''		
+		text: person.lastName || ''
 	});
 	win.add(lastNameLabelVal);
-	
+
 	top += height + 10;
-	
+
 	// Add controls for email
 	var emailLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -69,19 +69,19 @@ function view_contact(args) {
 		text: 'Home email:'
 	}); 
 	win.add(emailLabel);
-	
+
 	var emailLabelVal = Ti.UI.createLabel({
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		top: top,
 		left: inputLeftPos,
 		width: inputWidth,
-		height: height	,
+		height: height,
 		text: email
 	});
 	win.add(emailLabelVal);
-	
+
 	top += height + 10;	
-	
+
 	// Add controls for phone number
 	var phoneNumberLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -92,7 +92,7 @@ function view_contact(args) {
 		text: 'Home phone number:'
 	}); 
 	win.add(phoneNumberLabel);
-	
+
 	var phoneNumberLabelVal = Ti.UI.createLabel({
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		top: top,
@@ -102,9 +102,9 @@ function view_contact(args) {
 		text: phoneNumber
 	});
 	win.add(phoneNumberLabelVal);
-	
-	top += height + 10;		
-	
+
+	top += height + 10;
+
 	// Add controls for city
 	var cityLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -115,7 +115,7 @@ function view_contact(args) {
 		text: 'Home city:'
 	}); 
 	win.add(cityLabel);
-	
+
 	var cityLabelVal = Ti.UI.createLabel({
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		top: top,
@@ -126,8 +126,8 @@ function view_contact(args) {
 	});
 	win.add(cityLabelVal);
 	
-	top += height + 10;		
-	
+	top += height + 10;
+
 	// Add controls for street
 	var streetLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -138,7 +138,7 @@ function view_contact(args) {
 		text: 'Home street:'
 	}); 
 	win.add(streetLabel);
-	
+
 	var streetLabelVal = Ti.UI.createLabel({
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		top: top,
@@ -148,10 +148,9 @@ function view_contact(args) {
 		text: address.Street || ''
 	});
 	win.add(streetLabelVal);
-	
-	top += height + 10;		
-	
-	
+
+	top += height + 10;
+
 	// Add controls for ZIP
 	var zipLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -162,7 +161,7 @@ function view_contact(args) {
 		text: 'Home ZIP:'
 	}); 
 	win.add(zipLabel);
-	
+
 	var zipLabelVal = Ti.UI.createLabel({
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 		top: top,
@@ -171,8 +170,8 @@ function view_contact(args) {
 		height: height,
 		text: address.ZIP || '',
 	});
-	win.add(zipLabelVal);	
-		
+	win.add(zipLabelVal);
+
 	return win;	
 }
 module.exports = view_contact;

@@ -8,7 +8,7 @@ function add_contacts(args) {
 		top = 10,
 		inputLeftPos = '45%',
 		inputWidth = '50%';
-		
+
 	// Add controls for first name
 	var firstNameLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -19,7 +19,7 @@ function add_contacts(args) {
 		text: 'First name:'
 	});	
 	win.add(firstNameLabel);
-	
+
 	var firstNameInput = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		top: top,
@@ -28,9 +28,9 @@ function add_contacts(args) {
 		height: height
 	});
 	win.add(firstNameInput);
-	
+
 	top += height + 10;
-	
+
 	// Add controls for last name
 	var lastNameLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -41,18 +41,18 @@ function add_contacts(args) {
 		text: 'Last name:'
 	}); 
 	win.add(lastNameLabel);
-	
+
 	var lastNameInput = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		top: top,
 		left: inputLeftPos,
 		width: inputWidth,
-		height: height		
+		height: height
 	});
 	win.add(lastNameInput);
-	
+
 	top += height + 10;
-	
+
 	// Add controls for email
 	var emailLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -63,7 +63,7 @@ function add_contacts(args) {
 		text: 'Home email:'
 	}); 
 	win.add(emailLabel);
-	
+
 	var emailInput = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		top: top,
@@ -73,9 +73,9 @@ function add_contacts(args) {
 		keyboardType: Ti.UI.KEYBOARD_EMAIL	
 	});
 	win.add(emailInput);
-	
+
 	top += height + 10;	
-	
+
 	// Add controls for phone number
 	var phoneNumberLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -86,7 +86,7 @@ function add_contacts(args) {
 		text: 'Home phone number:'
 	}); 
 	win.add(phoneNumberLabel);
-	
+
 	var phoneNumberInput = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		top: top,
@@ -96,8 +96,8 @@ function add_contacts(args) {
 		keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD	
 	});
 	win.add(phoneNumberInput);
-	
-	top += height + 10;		
+
+	top += height + 10;
 	
 	// Add controls for city
 	var cityLabel = Ti.UI.createLabel({
@@ -109,7 +109,7 @@ function add_contacts(args) {
 		text: 'Home city:'
 	}); 
 	win.add(cityLabel);
-	
+
 	var cityInput = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		top: top,
@@ -118,9 +118,9 @@ function add_contacts(args) {
 		height: height
 	});
 	win.add(cityInput);
-	
-	top += height + 10;		
-	
+
+	top += height + 10;
+
 	// Add controls for street
 	var streetLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -131,7 +131,7 @@ function add_contacts(args) {
 		text: 'Home street:'
 	}); 
 	win.add(streetLabel);
-	
+
 	var streetInput = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		top: top,
@@ -141,9 +141,8 @@ function add_contacts(args) {
 	});
 	win.add(streetInput);
 	
-	top += height + 10;		
-	
-	
+	top += height + 10;
+
 	// Add controls for ZIP
 	var zipLabel = Ti.UI.createLabel({
 		left: labelLeftPos,
@@ -154,7 +153,7 @@ function add_contacts(args) {
 		text: 'Home ZIP:'
 	}); 
 	win.add(zipLabel);
-	
+
 	var zipInput = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		top: top,
@@ -164,15 +163,15 @@ function add_contacts(args) {
 		keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD	
 	});
 	win.add(zipInput);
-	
+
 	top += height + 20;	
-	
+
 	var saveButton = Ti.UI.createButton({
 		title: 'Add contact',
 		top: top
-	});	
+	});
 	win.add(saveButton);
-	
+
 	saveButton.addEventListener('click', function(e) {
 		var firstName = firstNameInput.value.trim(),
 			lastName = lastNameInput.value.trim(),
@@ -181,7 +180,7 @@ function add_contacts(args) {
 			city = cityInput.value.trim(),
 			street = streetInput.value.trim(),
 			zip = zipInput.value.trim();
-		
+
 		if (!(firstName || lastName || email || phoneNumber || city || street || zip)) {
 			alert('At least one field should not be empty');
 			return false;
@@ -213,7 +212,7 @@ function add_contacts(args) {
 			alert('Contact was added successfully. Contact ID = ' + person.id);
 		}
 	});
-	
+
 	return win;
 }
 module.exports = add_contacts;
