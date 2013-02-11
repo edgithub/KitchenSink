@@ -1,10 +1,19 @@
 function picker_multi1() {
-	var win = Ti.UI.createWindow();
+	var win = Ti.UI.createWindow(),
+		isTizen = Ti.Platform.osname === 'tizen';
 	win.backgroundColor = 'black';
 	
 	var picker = Ti.UI.createPicker();
 	
-	var column1 = Ti.UI.createPickerColumn({opacity:0});
+	if (isTizen) {
+		picker.width = 150;
+		picker.height = 110;
+		picker.color = '#fc0';
+	}
+
+	var column1 = Ti.UI.createPickerColumn();
+
+	isTizen || (column1.opacity = 0);
 	column1.addRow(Ti.UI.createPickerRow({title:'Bananas',custom_item:'b'}));
 	column1.addRow(Ti.UI.createPickerRow({title:'Strawberries',custom_item:'s', selected:true}));
 	column1.addRow(Ti.UI.createPickerRow({title:'Mangos',custom_item:'m'}));

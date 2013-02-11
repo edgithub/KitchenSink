@@ -3,7 +3,13 @@ function picker_custom1() {
 	win.backgroundColor = 'black';
 	
 	var picker = Ti.UI.createPicker({backgroundColor:'#ff9900'});
-	
+
+	if (Ti.Platform.osname === 'tizen') {
+		picker.width = 100;
+		picker.height = 110;
+		picker.color = '#fc0';
+	}
+
 	function addRow(text)
 	{
 		var row = Ti.UI.createPickerRow();
