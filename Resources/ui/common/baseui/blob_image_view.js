@@ -7,19 +7,18 @@ function blobImageView() {
 			top: 20,
 			width: 300,
 			backgroundColor: '#999'
-		});
+		}),
+		btn  = Titanium.UI.createButton({
+			title: 'Show this button as image',
+			bottom: 20
+		}),
+		blobCB = function(blob) {
+			imageView.image = blob;
+		};
 	
 	win.add(imageView);
-	
-	var blobCB = function(blob) {
-		imageView.image = blob;
-	},	
-	btn  = Titanium.UI.createButton({
-		title: 'Show this button as image',
-		bottom: 20
-	});
-	
 	win.add(btn);
+	
 	btn.addEventListener('click', function() {
 		this.toImage(blobCB);
 	});
