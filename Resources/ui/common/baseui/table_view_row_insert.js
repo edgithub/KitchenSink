@@ -31,45 +31,45 @@ function tv_row_insert() {
 	{
 		// In order to get a row we use "e.index" instead of "getIndexByName"
 		// This function is not available in Titanium API
-		var row = e.index;
+		var rowIndex = e.index;
 		
 		switch(e.rowData.title)
 		{
 			case 'Insert Row Above (no anim)':
-				row = Ti.UI.createTableViewRow();
-				var label = Ti.UI.createLabel({text:'New Row Object Row'});
+				var row = Ti.UI.createTableViewRow(),
+				label = Ti.UI.createLabel({text:'New Row Object Row'});
 				row.add(label);
 				tableView.insertRowBefore(0,row);
 				break;
 			case 'Insert Row Below - 1':
 				data = {title:'New Row After Row3'};
-				isTizen ? tableView.insertRowAfter(row, data) : tableView.insertRowAfter(row, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});	
+				isTizen ? tableView.insertRowAfter(rowIndex, data) : tableView.insertRowAfter(rowIndex, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});	
 				break;
 			case 'Insert Row Below - 2':
 				data = {title:'New Row After Row7'};
-				isTizen ? tableView.insertRowAfter(row, data) : tableView.insertRowAfter(row, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});
+				isTizen ? tableView.insertRowAfter(rowIndex, data) : tableView.insertRowAfter(rowIndex, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});
 				break;
 			case 'Insert Row Above - Header - 1':
 				data = {title:'New row before row 8', header:'Before header (1)'};
-				isTizen ? tableView.insertRowBefore(row, data) : tableView.insertRowBefore(row, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});	
+				isTizen ? tableView.insertRowBefore(rowIndex, data) : tableView.insertRowBefore(rowIndex, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});	
 				break;
 			case 'Insert Row Above - Header - 2':
 				data = {title:'New row before row 10', header:'Before header (2)'};
 				if (isTizen) {
-					tableView.insertRowBefore(row, data);
+					tableView.insertRowBefore(rowIndex, data);
 					tableView.scrollToIndex(10);
 				} else {
-					tableView.insertRowBefore(row, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});
+					tableView.insertRowBefore(rowIndex, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});
 					tableView.scrollToIndex(10, {position:Titanium.UI.iPhone.TableViewScrollPosition.MIDDLE,animated:true});
 				}
 				break;
 			case 'Insert Row Below - Header':
 				data = {title:'New row after row 13', header:'After header'};
-				isTizen ? tableView.insertRowAfter(row, data) : tableView.insertRowAfter(row, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});
+				isTizen ? tableView.insertRowAfter(rowIndex, data) : tableView.insertRowAfter(rowIndex, data, {animationStyle:Titanium.UI.iPhone.RowAnimationStyle.DOWN});
 				break;
 			case 'Insert Row w/o animation (below)':
 				data = {title:'New Row After Row3 w/o animation'};
-				tableView.insertRowAfter(row, data);
+				tableView.insertRowAfter(rowIndex, data);
 				isTizen ? tableView.scrollToIndex(3) : tableView.scrollToIndex(3, {position:Titanium.UI.iPhone.TableViewScrollPosition.MIDDLE,animated:false});
 				break;
 		}
