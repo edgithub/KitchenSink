@@ -48,7 +48,7 @@ function tizen_media_content_files(args) {
 		var source,
 			filter = new tizen.AttributeFilter ('type', 'EXACTLY', fileType);
 
-		function onError(e){
+		function onError(e) {
 			Ti.API.error(e.message);
 		}
 
@@ -67,7 +67,7 @@ function tizen_media_content_files(args) {
 		}
 	}
 
-	function onMediaItemArraySuccess(items){
+	function onMediaItemArraySuccess(items) {
 		var tableData = [],
 			i = 0,
 			itemsCount = items.length;
@@ -86,7 +86,7 @@ function tizen_media_content_files(args) {
 		}
 		filesList.setData(tableData);
 	}
-	filesList.addEventListener('click', function(e){
+	filesList.addEventListener('click', function(e) {
 		var index = e.rowData.itemIdOwn,
 			propArray = [
 				{ title: 'Item name: ' + itemsArray[index].title },
@@ -190,7 +190,7 @@ function tizen_media_content_files(args) {
 		}
 	}
 
-	pickerFiles.addEventListener('change', function(e){
+	pickerFiles.addEventListener('change', function(e) {
 		fileType = e.row.value;
 		getSelectedItemsList();
 	});

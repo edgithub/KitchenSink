@@ -57,7 +57,7 @@ function smsSend(args) {
 
 			Ti.API.info(servicesCount + ' service(s) found.');
 
-			if (servicesCount == 0) {
+			if (servicesCount === 0) {
 				Ti.API.info('The following error occurred: services list is empty.');
 				Ti.UI.createAlertDialog({
 					message: 'Services not found!',

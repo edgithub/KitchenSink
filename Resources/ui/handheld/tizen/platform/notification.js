@@ -25,14 +25,14 @@ function tizen_alarm() {
 			title: 'Remove all notifications'
 		});
 
-	removeButton.addEventListener('click', function(){
+	removeButton.addEventListener('click', function() {
 		tizen.notification.removeAll();
 	});
 
 	postButton.addEventListener('click', createNotification);
 
-	function createNotification(){
-		var appService = new tizen.ApplicationService("http://tizen.org/appcontrol/operation/default", null),
+	function createNotification() {
+		var appService = new tizen.ApplicationService('http://tizen.org/appcontrol/operation/default', null),
 			//create notification`s parameters
 			notificationDict = {
 				content: titleInput.value,
@@ -40,7 +40,7 @@ function tizen_alarm() {
 				service: appService
 			},
 			//create and post notification                 
-			notification = new tizen.StatusNotification("SIMPLE", "Simple notification", notificationDict);
+			notification = new tizen.StatusNotification('SIMPLE', 'Simple notification', notificationDict);
 
 		tizen.notification.post(notification);
 		titleInput.value = '';

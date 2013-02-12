@@ -72,7 +72,7 @@ function events_batch(args) {
 		eventsArr[2] = eventsArr[0].clone();
 		eventsArr[2].summary += ' copy 2';
 
-		calendar.addBatch(eventsArr, function(){
+		calendar.addBatch(eventsArr, function() {
 			summaryInput.value = '';
 			alert('Events were added successfully');
 		}, onError);
@@ -85,7 +85,7 @@ function events_batch(args) {
 			alert('Please enter summary');
 			return ;
 		}
-		calendar.find(function(events){
+		calendar.find(function(events) {
 			var eventsArr = [],
 				i = events.length - 1,
 				j = 0;
@@ -99,7 +99,7 @@ function events_batch(args) {
 				events[i].summary = value;
 				eventsArr.push(events[i]);
 			}
-			calendar.updateBatch(eventsArr, function(){
+			calendar.updateBatch(eventsArr, function() {
 				summaryInput.value = '';
 				alert('Events were updated successfully');
 			}, onError)
@@ -107,7 +107,7 @@ function events_batch(args) {
 	}
 
 	function deleteBatch() {
-		calendar.find(function(events){
+		calendar.find(function(events) {
 			var eventsArr = [],
 				i = events.length - 1,
 				j = 0;
@@ -121,8 +121,7 @@ function events_batch(args) {
 				eventsArr.push(events[i].id);
 			}
 			try {
-				alert(eventsArr.length);
-				calendar.removeBatch(eventsArr, function(){
+				calendar.removeBatch(eventsArr, function() {
 					alert('Events were removed successfully');
 				}, onError);
 			} catch (err) {

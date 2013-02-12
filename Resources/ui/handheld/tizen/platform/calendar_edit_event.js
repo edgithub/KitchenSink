@@ -132,7 +132,7 @@ function edit_event(args) {
 		alert('Event was updated successfully.');
 	});
 
-	function getCalendarStartDate(){
+	function getCalendarStartDate() {
 		var times = timePicker.value;
 
 		return {

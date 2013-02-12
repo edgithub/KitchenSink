@@ -30,7 +30,7 @@ function remove_contact(args) {
 				row.add(contactLabel);
 				row.add(delButton);
 
-				(function(index){
+				(function(index) {
 					delButton.addEventListener('click', function(e) {
 						var rowsCount = data.length,
 							i = 0,

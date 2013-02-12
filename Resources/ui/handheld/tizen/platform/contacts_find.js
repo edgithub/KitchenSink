@@ -24,13 +24,13 @@ function find_contacts(args) {
 	});
 	self.add(searchButton);
 
-	searchButton.addEventListener('click', function(e){
+	searchButton.addEventListener('click', function(e) {
 		Ti.Contacts.Tizen.getPeopleWithName(searchInput.value, function(persons) {
 			var contactsCount = persons.length,
 				i = 0,
 				tableData = [];
 			if (contactsCount === 0) {
-				searchInput.value = "";
+				searchInput.value = '';
 				alert('Contact(s) not found');
 				return false;
 			}
@@ -63,13 +63,13 @@ function find_contacts(args) {
 				row.add(viewButton);
 				row.add(editButton);
 
-				(function(index){
+				(function(index) {
 					var wnd;
-					viewButton.addEventListener('click', function(e){
+					viewButton.addEventListener('click', function(e) {
 						wnd = new  (require('ui/handheld/tizen/platform/contact_view'))({ title: 'View contact details', contactId: persons[index].id });
 						args.containingTab.open(wnd, { animated: true });
 					});
-					editButton.addEventListener('click', function(e){
+					editButton.addEventListener('click', function(e) {
 						wnd = new  (require('ui/handheld/tizen/platform/contact_edit'))({ title: 'Edit contact details', contactId: persons[index].id });
 						args.containingTab.open(wnd, { animated: true });
 						contactsTable.data = [];
@@ -81,7 +81,7 @@ function find_contacts(args) {
 			}
 
 			contactsTable.data = tableData;
-		}, function(err){
+		}, function(err) {
 			alert('Error occured: ' = err);
 		});
 	});

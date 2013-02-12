@@ -6,7 +6,7 @@ function emailFolders(args) {
 			rowHeight: 35
 		}),
 		serviceType = 'messaging.email',
-		emailService = null;
+		emailService;
 
 	// Initialize email service
 	function initEmailService(callBack) {
