@@ -42,14 +42,14 @@ function tizen_media_content_directories(args) {
 			return;
 		}
 
-		function onError(e){
+		function onError(e) {
 			Ti.API.error(e.message);
 		}
 
 		source.getFolders(onMediaFolderArrayFilteredSuccess, onError);
 	}
 
-	function onMediaFolderArrayFilteredSuccess(folders){
+	function onMediaFolderArrayFilteredSuccess(folders) {
 		var tableData = [],
 			i = 0,
 			foldersCount = folders.length
@@ -58,8 +58,8 @@ function tizen_media_content_directories(args) {
 				var row = Ti.UI.createTableViewRow({
 					title: folders[i].title
 				});
+				tableData.push(row);
 			}
-			tableData.push(row);
 		}
 		foldersList.setData(tableData);
 	}
