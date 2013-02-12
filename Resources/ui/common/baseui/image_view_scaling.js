@@ -25,8 +25,9 @@ function image_view_scale() {
 		if (Ti.Platform.osname === 'mobileweb') {
 			l.text = 'dimensions unavailable'
 		} if (Ti.Platform.osname === 'tizen') {
-			// Mobile Web - based platforms do not have ImageView.ToBlob(),
-			// so we demonstrate how to get image dimensions otherwise.
+			// Mobile Web - based platforms do not have ImageView.ToBlob().
+			// So, in order to demonstrate how to get image dimensions,
+			// we generate the blob manually.
 			var xhr = Titanium.Network.createHTTPClient();
 					
 			xhr.onload = function() {	

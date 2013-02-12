@@ -29,8 +29,8 @@ function tv_row_insert() {
 	
 	tableView.addEventListener('click', function(e)
 	{
-		// In order to get a row we use "e.index" instead of "getIndexByName"
-		// This function is not available in Titanium API
+		// In order to get a row, we use "e.index" instead of "getIndexByName" which is
+		// not available in Titanium API.
 		var row = e.index;
 		
 		switch(e.rowData.title)

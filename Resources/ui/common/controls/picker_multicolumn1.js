@@ -6,6 +6,8 @@ function picker_multi1() {
 	var picker = Ti.UI.createPicker();
 	
 	if (isTizen) {
+		// On Mobile Web, by default, the picker fills the entire view it is contained,
+		// unless the size is provided.
 		picker.width = 150;
 		picker.height = 110;
 		picker.color = '#fc0';
@@ -13,7 +15,6 @@ function picker_multi1() {
 
 	var column1 = Ti.UI.createPickerColumn();
 
-	isTizen || (column1.opacity = 0);
 	column1.addRow(Ti.UI.createPickerRow({title:'Bananas',custom_item:'b'}));
 	column1.addRow(Ti.UI.createPickerRow({title:'Strawberries',custom_item:'s', selected:true}));
 	column1.addRow(Ti.UI.createPickerRow({title:'Mangos',custom_item:'m'}));

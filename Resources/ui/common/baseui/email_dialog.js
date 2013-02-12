@@ -87,7 +87,7 @@ function email_dialog() {
 				} else {
 					emailDialog.setMessageBody('Appcelerator Titanium Rocks!');
 				}
-				//The attachment is not supported on Tizen yet
+				// File attachments are not supported by the Tizen OS yet
 				if(!isTizen) {
 					// attach a blob
 					emailDialog.addAttachment(event.media);
@@ -96,7 +96,7 @@ function email_dialog() {
 					var f = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory, 'etc/cricket.wav');
 					emailDialog.addAttachment(f);
 				}
-				//"complete" event is not supported on MobileWeb-based platforms
+				// "complete" event is not supported on MobileWeb-based platforms
 				emailDialog.addEventListener('complete',function(e)
 				{
 					if (e.result == emailDialog.SENT)

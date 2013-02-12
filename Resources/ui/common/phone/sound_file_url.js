@@ -170,6 +170,7 @@ function sound_file_url() {
 			fileNum = 0;
 		}
 		
+		// Update the progress bar
 		pb.value = 0;
 		pb.max = sound.duration;
 		
@@ -201,6 +202,7 @@ function sound_file_url() {
 	});
 	
 	if (isTizen) {
+		// setToolbar is not supported on Tizen; simply add the progress bar to the window
 		pb.top = 210;
 		win.add(pb);
 	} else if (!isAndroid) {

@@ -1,5 +1,9 @@
 function xml_rss(args) {
 	
+	// loadXMLData() seems to contain outdated code (as of Feb 2013).
+	// (This entire test was disabled for the Mobile Web platform, so the function was unused).
+	// The code was modified to work on the Tizen platform, and placed in loadXMLDataTizen().
+
 	function loadXMLDataTizen() {
 		try
 		{
@@ -155,9 +159,6 @@ function xml_rss(args) {
 	var xhr = Ti.Network.createHTTPClient();
 	xhr.open("GET","http://v2.0.news.tmg.s3.amazonaws.com/feeds/news.xml");
 
-	// loadXMLData() seems to contain outdated code (as of Feb 2013).
-	// (This entire test was disabled for the Mobile Web platform, so the function was unused).
-	// The code was modified to work on the Tizen platform, and placed in loadXMLDataTizen().
 	xhr.onload = Titanium.Platform.osname === 'tizen' ? loadXMLDataTizen : loadXMLData;
 
 	xhr.send();

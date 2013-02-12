@@ -62,6 +62,7 @@ function picker_date1() {
 		}
 	});
 	if (Ti.Platform.osname !== 'tizen') {
+		// Changing locales on the fly is not supported on Tizen
 		win.add(localebutton);
 	}
 	

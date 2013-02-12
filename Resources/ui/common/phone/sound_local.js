@@ -180,6 +180,7 @@ function sound_local() {
 	});
 	
 	if(isTizen) {
+		// setToolbar is not supported on Tizen; simply add the progress bar to the window
 		pb.top = 210;
 		win.add(pb);
 	} else if (!isAndroid) {

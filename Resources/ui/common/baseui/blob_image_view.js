@@ -1,3 +1,5 @@
+// For this test: Base UI -> Views -> Element Screenshot
+
 function blobImageView() {
 	var win = Titanium.UI.createWindow(),
 		imageView = Titanium.UI.createImageView({

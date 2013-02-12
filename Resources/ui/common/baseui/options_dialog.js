@@ -29,6 +29,8 @@ function options_dialog() {
 		// There is no property OptionDialog.buttonNames in MobileWeb/Tizen, so we will
 		// demonstrate toggling the cancel button in the option dialog using the documented
 		// OptionDialog.options.
+		// The cancel button will show as an additional grey button with cancel semantics;
+		// its title will not be "Cancel".
 		var cancel_index = -1,
 			cancel_option = '',		
 			showCancel = Ti.UI.createSwitch({
@@ -168,7 +170,9 @@ function options_dialog() {
 			dialog.show();
 		});
 	} else if (isTizen){
-		// BUTTON TO MODIFY DIALOG TO USE A VIEW AND SHOW
+
+		// Demonstrate the tizenView property, similar to the androidView property
+
 		var button3 = Titanium.UI.createButton({
 			title:'Option dialog with tizenView',
 			height:Titanium.UI.SIZE,

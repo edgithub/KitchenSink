@@ -9,7 +9,12 @@ function xhr_download() {
 			max:1,
 			value:0,
 			top:10,
+
+			// iOS can display PDFs, Android can display PNGs, but Tizen can display neither, because
+			// it's MobileWeb-based, and MobileWeb can neither show PDFs nor reliably work with binary
+			// content. Therefore, Tizen will download and show HTML.
 			message: 'Downloading ' + isAndroid ? 'PNG' : (isTizen ? 'HTML' : 'PDF') + ' File',
+
 			font:{fontSize:12, fontWeight:'bold'},
 			color:'#888'
 		});
