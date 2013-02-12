@@ -12,7 +12,7 @@ function email(args) {
 	tableview.addEventListener('click', function(e) {
 		if (e.rowData.test) {
 			var ExampleWindow = require(e.rowData.test),
-				win = new ExampleWindow({title: e.rowData.title, containingTab: args.containingTab});
+				win = new ExampleWindow({ title: e.rowData.title, containingTab: args.containingTab });
 
 			args.containingTab.open(win);
 		}

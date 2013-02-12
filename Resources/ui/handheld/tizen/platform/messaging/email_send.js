@@ -61,7 +61,7 @@ function emailSend(args) {
 			left: 70
 		}),
 		serviceType = 'messaging.email',
-		emailService = null;
+		emailService;
 
 	// Initialize email service
 	function initEmailService(callBack) {

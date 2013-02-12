@@ -105,7 +105,7 @@ function emailFolderMessages(args) {
 
 		win.add(tableView);
 
-		tableView.addEventListener('click', function(item) {		
+		tableView.addEventListener('click', function(item) {
 			var ExampleWindow = require('ui/handheld/tizen/platform/messaging/email_show_message');
 
 			// Show message detail
