@@ -11,7 +11,7 @@ function view_contact(args) {
 		inputWidth = '50%',
 		address = (person.address.home &&  (person.address.home.length > 0)) ? person.address.home[0] : {},
 		email = (person.email.home && (person.email.home.length > 0)) ? person.email.home[0] : '',
-		phoneNumber = (person.phone.home && (person.phone.home.length > 0)) ? person.phone.home[0] : '';		
+		phoneNumber = (person.phone.home && (person.phone.home.length > 0)) ? person.phone.home[0] : '';
 
 	// Add controls for first name
 	var firstNameLabel = Ti.UI.createLabel({
