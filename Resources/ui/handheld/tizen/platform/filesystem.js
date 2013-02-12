@@ -1,6 +1,6 @@
 function tizen_filesystem() {
 
-	function Directory(name){
+	function Directory(name) {
 		this.dirName = name;
 		this.copyTo = 'copyTo';
 		this.moveTo = 'moveTo';
@@ -65,11 +65,11 @@ function tizen_filesystem() {
 	}
 
 	function deleteFile(name, directory) {
-		function success(){
+		function success() {
 			Ti.API.info('was deleted');
 			updateLists();
 		}
-		function error(e){
+		function error(e) {
 			titleStatus.setText(staticText);
 			Ti.API.info('Problem with deleting file ' + name);
 			Ti.API.info(e.message);
@@ -105,7 +105,7 @@ function tizen_filesystem() {
 						buttonNames: ['Copy', 'Move', 'Delete', 'Cancel']
 					});
 
-				popUp.addEventListener('click', function(e){
+				popUp.addEventListener('click', function(e) {
 					switch(e.index) {
 						case 0:
 							copyTo(name, directory);
@@ -128,7 +128,7 @@ function tizen_filesystem() {
 		directory.table.setData(tableData);
 	}
 
-	function onErrorListOfFiles(){
+	function onErrorListOfFiles() {
 		Ti.API.info('Problem with getting the list of files');
 	}
 
@@ -166,7 +166,7 @@ function tizen_filesystem() {
 		});
 	}
 
-	self.addEventListener('postlayout', function(){
+	self.addEventListener('postlayout', function() {
 		updateLists();
 	});
 
