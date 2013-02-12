@@ -129,7 +129,7 @@ function add_event(args) {
 		timePicker.value = new Date();
 	});
 
-	function getCalendarStartDate(){
+	function getCalendarStartDate() {
 		var times = timePicker.value;
 
 		return {

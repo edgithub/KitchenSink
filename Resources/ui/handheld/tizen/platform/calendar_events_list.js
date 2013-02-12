@@ -27,7 +27,7 @@ function events_list(args) {
 		}, onError);
 	});
 
-	function fillEventsTable(events){
+	function fillEventsTable(events) {
 		var data = [],
 			eventsCount = events.length,
 			i = 0;
@@ -53,7 +53,7 @@ function events_list(args) {
 					title: 'Delete'	
 				});
 
-			(function(index){
+			(function(index) {
 				delButton.addEventListener('click', function(e) {
 					var rowsCount = data.length,
 						i = 0,
