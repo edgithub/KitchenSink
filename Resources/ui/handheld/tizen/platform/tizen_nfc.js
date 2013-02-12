@@ -19,7 +19,7 @@ function tizenNFC(title) {
 	}
 
 	// Converts NFC record type to human readable presentation.
-	function NfcRecordTypeToString(tnfType){
+	function NfcRecordTypeToString(tnfType) {
 		switch (tnfType) {
 			case tizen.nfc.NFC_RECORD_TNF_EMPTY:
 				return 'EMPTY';
@@ -39,7 +39,7 @@ function tizenNFC(title) {
 	}
 
 	//Formats property and value into html code
-	function propertyToLine(propertyName, propertyValue){
+	function propertyToLine(propertyName, propertyValue) {
 		return '<b>' + propertyName + ': </b> ' + propertyValue + '<br />';
 	}
 
@@ -68,14 +68,13 @@ function tizenNFC(title) {
 	}
 
 	// deletes all items form picker control
-	function clearPicker(){
+	function clearPicker() {
 		try{
 			if(picker.columns[0]) {
 				var col = picker.columns[0],
-					len = col.rowCount,
-					x = len - 1;
+					x = col.rowCount - 1;
 
-				for(; x >= 0; x-- ){
+				for(; x >= 0; x-- ) {
 					var row = col.rows[x];
 					col.removeRow(row);
 				}
@@ -87,7 +86,7 @@ function tizenNFC(title) {
 	}
 
 	// fills pickers with items from received message
-	function fillPicker(message){
+	function fillPicker(message) {
 		clearPicker();
 
 		var messagesCount = message.recordCount,
@@ -108,15 +107,14 @@ function tizenNFC(title) {
 		Ti.API.info('NDEF successfully received.');
 
 		Ti.API.info(JSON.stringify(message));
-		if (message.recordCount > 0){
-			if (message.recordCount == 1)
-			{
+		if (message.recordCount > 0) {
+			if (message.recordCount == 1) {
 				ndefRecordLabel.text = formatRecordInfo(message.records[0]);
 				picker.hide();
-			}else{
+			} else {
 				fillPicker(message);
 			}
-		}else{
+		} else {
 			ndefRecordLabel.text = 'There are no records in NDEF.';
 		}
 	}
@@ -175,7 +173,7 @@ function tizenNFC(title) {
 	}
 
 	function switchNfc(turnOn){
-		if (turnOn){
+		if (turnOn) {
 			nfcDetectionLabel.text = 'Searching for new NFC tags around...';
 
 			function onPowerOnFails(e) {
@@ -189,10 +187,10 @@ function tizenNFC(title) {
 				onPowerOnFails(e);
 				nfcAdapter = null;
 			}
-		}else{
+		} else {
 			if (nfcAdapter) {
 				unsetTagDetect();
-			}else{
+			} else {
 				nfcDetectionLabel.text = 'NFC is powered off.';
 			}
 		}
@@ -241,7 +239,7 @@ function tizenNFC(title) {
 	win.add(ndefRecordLabel);
 
 	nfcSwitch.addEventListener('change', function(e) { switchNfc(e.value); });
-	picker.addEventListener('change', function(e){ ndefRecordLabel.text = formatRecordInfo(e.row.recordsOriginalData); });
+	picker.addEventListener('change', function(e) { ndefRecordLabel.text = formatRecordInfo(e.row.recordsOriginalData); });
 	picker.hide();
 
 	return win;
