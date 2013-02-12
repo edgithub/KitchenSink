@@ -15,8 +15,8 @@ function tizenSystemInfo(title) {
 		}
 	}
 
-	function batteryMonitoringClicked(e){
-		if  (e && e.rowData){
+	function batteryMonitoringClicked(e) {
+		if  (e && e.rowData) {
 			if (batteryMonitoring.isOn)	{
 				try {
 					tizen.systeminfo.removePropertyValueChangeListener(gBatteryListener);
@@ -42,7 +42,7 @@ function tizenSystemInfo(title) {
 		}
 	}
 
-	function showDetailsDialog(propertyName, propertyDetailsHtml){
+	function showDetailsDialog(propertyName, propertyDetailsHtml) {
 		alertWin.showAlert(propertyName + ' details', propertyDetailsHtml, 'Go back to list');
 	}
 
@@ -72,7 +72,7 @@ function tizenSystemInfo(title) {
 	tableview.data = data;
 
 	// create table view event listener
-	tableview.addEventListener('click', function(e){
+	tableview.addEventListener('click', function(e) {
 		if (e && e.rowData) {
 			var pName = e.rowData.propertyName;
 			if (pName) {
@@ -177,11 +177,11 @@ function tizenSystemInfo(title) {
 		]));
 	}
 
-	function formatHeader(headerName){
+	function formatHeader(headerName) {
 		return  '<b>' + headerName + '</b> <br />';
 	}
 
-	function formatSubLines(lineArray){
+	function formatSubLines(lineArray) {
 		var result = '<div style="text-align: left; width: 100%">',
 			i = 0,
 			len = lineArray.length;
