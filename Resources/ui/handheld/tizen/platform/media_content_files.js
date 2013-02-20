@@ -47,9 +47,9 @@ function tizen_media_content_files(args) {
 	function getSelectedItemsList() {
 		var source,
 			filter = Ti.Tizen.createAttributeFilter({
-				attributeName: 'folderId', 
+				attributeName: 'type',
 				matchFlag: 'EXACTLY',
-				matchValue: folderId
+				matchValue: fileType
 			});
 
 		function onError(e) {
