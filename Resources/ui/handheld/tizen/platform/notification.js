@@ -26,23 +26,30 @@ function tizen_alarm() {
 		});
 
 	removeButton.addEventListener('click', function() {
-		tizen.notification.removeAll();
+		Ti.Tizen.Notification.removeAll();
 	});
 
 	postButton.addEventListener('click', createNotification);
 
 	function createNotification() {
-		var appService = new tizen.ApplicationService('http://tizen.org/appcontrol/operation/default', null),
-			//create notification`s parameters
+		var appService = Ti.Tizen.Application.createApplicationService({
+				operation: 'http://tizen.org/appcontrol/operation/default',
+				uri: null
+			}),
+			// Create notification`s parameters
 			notificationDict = {
 				content: titleInput.value,
 				vibration: true, 
 				service: appService
 			},
-			//create and post notification                 
-			notification = new tizen.StatusNotification('SIMPLE', 'Simple notification', notificationDict);
+			// Create and post notification
+			notification = Ti.Tizen.Notification.createStatusNotification({
+				statusType: 'SIMPLE',
+				title: 'Simple notification',
+				notificationInitDict: notificationDict
+			});
 
-		tizen.notification.post(notification);
+		Ti.Tizen.Notification.post(notification);
 		titleInput.value = '';
 	}
 

@@ -46,23 +46,27 @@ function tizen_media_content_files(args) {
 	//Get a media content files Begin
 	function getSelectedItemsList() {
 		var source,
-			filter = new tizen.AttributeFilter ('type', 'EXACTLY', fileType);
+			filter = Ti.Tizen.createAttributeFilter({
+				attributeName: 'folderId', 
+				matchFlag: 'EXACTLY',
+				matchValue: folderId
+			});
 
 		function onError(e) {
 			Ti.API.error(e.message);
 		}
 
 		try {
-			source = tizen.mediacontent.getLocalMediaSource();
+			source = Ti.Tizen.MediaContent.getLocalMediaSource();
 		} catch (exc) {
-			Ti.API.error('tizen.mediacontent.getLocalMediaSource() exception:' + exc.message);
+			Ti.API.error('Ti.Tizen.MediaContent.getLocalMediaSource() exception:' + exc.message);
 			return;
 		}
 
 		try {
 			source.findItems(onMediaItemArraySuccess, onError, null, filter);
 		} catch (exc) {
-			Ti.API.error('tizen.mediacontent.getLocalMediaSource() exception:' + exc.message);
+			Ti.API.error('Ti.Tizen.MediaContent.getLocalMediaSource() exception:' + exc.message);
 			return;
 		}
 	}

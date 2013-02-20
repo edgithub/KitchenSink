@@ -5,8 +5,8 @@ function tizenSystemInfo(title) {
 
 	function getSystemProperty(property, onSuccess, onError) {
 		try {
-			if (tizen.systeminfo.isSupported(property)) {
-				tizen.systeminfo.getPropertyValue(property, onSuccess, onError);
+			if (Ti.Tizen.SystemInfo.isSupported(property)) {
+				Ti.Tizen.SystemInfo.getPropertyValue(property, onSuccess, onError);
 			} else {
 				onError({ message: 'Property ' + property + ' not supported' })
 			}
@@ -19,7 +19,7 @@ function tizenSystemInfo(title) {
 		if  (e && e.rowData) {
 			if (batteryMonitoring.isOn)	{
 				try {
-					tizen.systeminfo.removePropertyValueChangeListener(gBatteryListener);
+					Ti.Tizen.SystemInfo.removePropertyValueChangeListener(gBatteryListener);
 					e.rowData.title = batteryMonitoring.offCaption;
 					messageWin.showToast(batteryMonitoring.offCaption, 1500);
 					batteryMonitoring.isOn = false;
@@ -28,7 +28,7 @@ function tizenSystemInfo(title) {
 				}
 			}else{
 				try {
-					gBatteryListener = tizen.systeminfo.addPropertyValueChangeListener('Power',
+					gBatteryListener = Ti.Tizen.SystemInfo.addPropertyValueChangeListener('Power',
 						function(power) { messageWin.showToast('Battery level: ' + power.level, 1500); },
 						function(e) { messageWin.showToast('Battery monitoring error! \n' + e.message, 2500); });
 

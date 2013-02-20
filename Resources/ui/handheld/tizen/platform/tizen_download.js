@@ -33,9 +33,9 @@ function tizenDownload(title) {
 		statusLabel = createLabel('Start download to see status...', 290),
 		stateLabel = createLabel('Download not started yet.', 330),
 		startButton = createButton('start download', 70, function() { startDownload(); }),
-		pauseButton = createButton('pause download', 110, function() { if (downloadId) tizen.download.pause(downloadId); }),
-		resumeButton = createButton('resume download', 150, function() { if (downloadId) tizen.download.resume(downloadId); }),
-		stopButton = createButton('stop download', 190, function(){ if (downloadId) tizen.download.abort(downloadId); }),
+		pauseButton = createButton('pause download', 110, function() { downloadId && Ti.Tizen.Download.pause(downloadId); }),
+		resumeButton = createButton('resume download', 150, function() { downloadId && Ti.Tizen.Download.resume(downloadId); }),
+		stopButton = createButton('stop download', 190, function(){ downloadId && Ti.Tizen.Download.abort(downloadId); }),
 		urlTextField = Titanium.UI.createTextField({
 			value: 'http://download.tizen.org/sdk/InstallManager/tizen-sdk-2.0-ubuntu32.bin',
 			top: 30,
@@ -59,7 +59,7 @@ function tizenDownload(title) {
 	return win;
 
 	function startDownload(){
-		//listener object must be "local" for call "tizen.download.start". Don't move this declaration it out of this function.
+		// Listener object must be "local" for call "Ti.Tizen.Download.start". Don't move this declaration it out of this function.
 		var listener = {
 			onprogress : function(id, receivedSize, totalSize) {
 				Titanium.API.info('"onprogress" event. id=' + id + ', receivedSize=' + receivedSize + ', totalSize=' + totalSize);
@@ -96,11 +96,15 @@ function tizenDownload(title) {
 			if (downloadId){
 				messageWin.showToast('Please, stop current download before start new one.', 3000);
 			}else{
-				var urlDownload = new tizen.URLDownload(urlTextField.value, 'wgt-private-tmp', 'tmp' + (new Date().getTime()));
+				var urlDownload = Ti.Tizen.Download.createURLDownload({
+					url: urlTextField.value,
+					destination: 'wgt-private-tmp',
+					fileName: 'tmp' + (new Date().getTime())
+				});
 				statusLabel.text = 'Starting...';
-				downloadId = tizen.download.start(urlDownload, listener);
+				downloadId = Ti.Tizen.Download.start(urlDownload, listener);
 				Titanium.API.info('Download started. downloadId=' + downloadId);
-				Titanium.API.info('Download started. State=' + tizen.download.getState(downloadId));
+				Titanium.API.info('Download started. State=' + Ti.Tizen.Download.getState(downloadId));
 			}
 		}catch(e) {
 			messageWin.showToast('Exception on start download! /n' + e.message, 2500);
@@ -118,7 +122,7 @@ function tizenDownload(title) {
 			stopButton.enabled = !!downloadId;
 
 			// state can be: "PAUSED", "ABORTED", "COMPLETED", "DOWNLOADING", "QUEUED"
-			var state =  downloadId ? tizen.download.getState(downloadId) : 'NONE';
+			var state =  downloadId ? Ti.Tizen.Download.getState(downloadId) : 'NONE';
 			stateLabel.text = 'current download state: ' + state;
 			Titanium.API.info('current download state: ' + state);
 

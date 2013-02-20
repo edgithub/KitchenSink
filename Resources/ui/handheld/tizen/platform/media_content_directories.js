@@ -36,9 +36,9 @@ function tizen_media_content_directories(args) {
 		var source = null;
 
 		try {
-			source = tizen.mediacontent.getLocalMediaSource();
+			source = Ti.Tizen.MediaContent.getLocalMediaSource();
 		} catch (exc) {
-			Ti.API.error('tizen.mediacontent.getLocalMediaSource() exception:' + exc.message);
+			Ti.API.error('Ti.Tizen.MediaContent.getLocalMediaSource() exception:' + exc.message);
 			return;
 		}
 
