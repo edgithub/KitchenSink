@@ -84,7 +84,7 @@ function emailSend(args) {
 			callBack && callBack();
 		}
 
-		tizen.messaging.getMessageServices(serviceType, servicesListCB, errorCB);
+		Ti.Tizen.Messaging.getMessageServices(serviceType, servicesListCB, errorCB);
 	}
 
 	// Check email message data. Tizen is not support it function yet.
@@ -135,12 +135,17 @@ function emailSend(args) {
 			try {
 				Ti.API.info('Start addding draft email message.');
 
+				var msg = Ti.Tizen.Messaging.createMessage({
+					type: serviceType,
+					messageInitDict: {
+						subject: subjectField.value,
+						plainBody: textArea.value,
+						to: [emailField.value]
+					}
+				});
+				
 				// Add new draft email message
-				checkMessageData() && emailService.messageStorage.addDraftMessage(new tizen.Message(serviceType, {
-					subject: subjectField.value,
-					plainBody: textArea.value,
-					to: [emailField.value]
-				}), draftMessageAdded, errorCB);
+				checkMessageData() && emailService.messageStorage.addDraftMessage(msg, draftMessageAdded, errorCB);
 			} catch (exc){
 				Ti.API.info('Exception has been thrown when called addDraftMessage.');
 				
@@ -170,8 +175,17 @@ function emailSend(args) {
 			try {
 				Ti.API.info('Start to add new email message.');
 
+				var msg = Ti.Tizen.Messaging.createMessage({
+					type: serviceType,
+					messageInitDict: { 
+						subject: subjectField.value, 
+						plainBody: textArea.value, 
+						to: [emailField.value]
+					}
+				});
+				
 				// Add new email message
-				checkMessageData() && emailService.sendMessage(new tizen.Message(serviceType, { subject: subjectField.value, plainBody: textArea.value, to: [emailField.value] }), emailSent, errorCB);
+				checkMessageData() && emailService.sendMessage(msg, emailSent, errorCB);
 			} catch (exc){
 				Ti.API.info('Exception has been thrown when called sendMessage.');
 

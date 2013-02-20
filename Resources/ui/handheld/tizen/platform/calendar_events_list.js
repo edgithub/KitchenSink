@@ -2,7 +2,7 @@ function events_list(args) {
 	var self = Ti.UI.createWindow({
 			title: args.title
 		}),
-		calendar = tizen.calendar.getDefaultCalendar('EVENT'),
+		calendar = Ti.Tizen.Calendar.getDefaultCalendar('EVENT'),
 		tableview = Ti.UI.createTableView();
 
 	tableview.addEventListener('click', function(e) {
@@ -20,7 +20,7 @@ function events_list(args) {
 
 	self.add(tableview);
 
-	//Update events table after editing single event
+	// Update events table after editing single event
 	Ti.App.addEventListener('UpdateEventsTable',  function(e) {
 		calendar.find(function (events) {
 			tableview.data = fillEventsTable(events);

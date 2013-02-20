@@ -3,7 +3,6 @@ function tizen(_args) {
 		data = [
 			{ title: 'Contacts', hasChild: true, test: 'ui/handheld/tizen/platform/contacts' },
 			{ title: 'Call', hasChild: true, test: 'ui/handheld/tizen/platform/call/call' },
-			{ title: 'Geocoder', hasChild: true, test: 'ui/handheld/tizen/platform/geocoder' },		
 			{ title: 'Application', hasChild: true, test: 'ui/handheld/tizen/platform/application/application' },
 			{ title: 'Filesystem', hasChild: true, test: 'ui/handheld/tizen/platform/filesystem' },
 			{ title: 'Download demo', hasChild: true, test: 'ui/handheld/tizen/platform/tizen_download' },

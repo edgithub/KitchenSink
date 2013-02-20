@@ -29,7 +29,7 @@ function emailFolders(args) {
 			callBack && callBack();
 		}
 
-		tizen.messaging.getMessageServices(serviceType, servicesListCB, errorCB);
+		Ti.Tizen.Messaging.getMessageServices(serviceType, servicesListCB, errorCB);
 	}
 
 	function errorCB(error) {
@@ -79,7 +79,7 @@ function emailFolders(args) {
 			}
 
 			if (foldersCount === 0) {
-				errorCB({message: 'Folders not found.'});
+				errorCB({ message: 'Folders not found.' });
 				return;
 			}
 
@@ -95,8 +95,14 @@ function emailFolders(args) {
 		try {
 			Ti.API.info('Start to search list of folders from email account.');
 
+			var attributeFilter = Ti.Tizen.createAttribureFilter({
+				attributeName: 'serviceId',
+				matchFlag: 'EXACTLY',
+				matchValue: emailService.id
+			});
+
 			// Search for email folders
-			emailService.messageStorage.findFolders(new tizen.AttributeFilter('serviceId', 'EXACTLY', emailService.id), foldersListCB, errorCB);
+			emailService.messageStorage.findFolders(attributeFilter, foldersListCB, errorCB);
 		} catch(exc) {
 			Ti.API.info('Exception has been thrown.');
 

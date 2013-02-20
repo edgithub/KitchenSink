@@ -69,11 +69,13 @@ function tizen_filesystem() {
 			Ti.API.info('was deleted');
 			updateLists();
 		}
+
 		function error(e) {
 			titleStatus.setText(staticText);
 			Ti.API.info('Problem with deleting file ' + name);
 			Ti.API.info(e.message);
 		}
+
 		try {
 			titleStatus.setText('deleting...');
 			directory.virtualRoot.deleteFile(
@@ -88,6 +90,7 @@ function tizen_filesystem() {
 
 	function onListOfFiles(directory) {
 		titleStatus.setText(staticText);
+		
 		var tableData = [],
 			i = 0,
 			filesCount = directory.files.length;
@@ -118,13 +121,14 @@ function tizen_filesystem() {
 							break;
 						case 3:
 							Ti.API.info('cancel');
-					};
+					}
 				});
 				popUp.show();
 			});
 
 			tableData.push(row);
 		}
+
 		directory.table.setData(tableData);
 	}
 
@@ -142,13 +146,14 @@ function tizen_filesystem() {
 
 	function onLoad(folderName, success) {
 		function onResolveError(e) {
-			Ti.API.info('tizen.filesystem.resolve() error: name ' + e.name);
+			Ti.API.info('Ti.Tizen.Filesystem.resolve() error: name ' + e.name);
 			Ti.API.info(', message: ' + e.message);
 		}
+
 		try {
-			tizen.filesystem.resolve(folderName, success, onResolveError, 'rw');
+			Ti.Tizen.Filesystem.resolve(folderName, success, onResolveError, 'rw');
 		} catch (exc) {
-			Ti.API.info('tizen.filesystem.resolve() exception: ' + exc.message);
+			Ti.API.info('Ti.Tizen.Filesystem.resolve() exception: ' + exc.message);
 		}
 	}
 
@@ -173,6 +178,7 @@ function tizen_filesystem() {
 	self.add(table1);
 	self.add(table2);
 	self.add(titleStatus);
+
 	return self;
 }
 

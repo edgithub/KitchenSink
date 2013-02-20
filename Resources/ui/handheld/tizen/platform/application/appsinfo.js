@@ -1,8 +1,8 @@
 function tizen_appsinfo(_args) {
 	var self = Ti.UI.createWindow();
 
-	//Return list installed on the device applications 
-	tizen.application.getAppsInfo(function(applications) {
+	// Return list installed on the device applications 
+	Ti.Tizen.Application.getAppsInfo(function(applications) {
 		var data = [],
 			i = 0,
 			applicationsCount = applications.length,
@@ -10,18 +10,18 @@ function tizen_appsinfo(_args) {
 
 		for (; i < applicationsCount; i++) {
 			data.push({
-				//AlertDialog title
+				// AlertDialog title
 				title: applications[i].name + '\n<font size="1">' + applications[i].id + '</font>',
-				//app_id consist application id used in showAppInfoById
-				//Do not remove it
+				// app_id consist application id used in showAppInfoById
+				// Do not remove it
 				app_id: applications[i].id,
-				app_name: applications[i].name
+				app_name: applications[i].namek
 			});
 		}
 
 		tableview.data = data;
 		
-		//Show dialog with Application information
+		// Show dialog with Application information
 		tableview.addEventListener('click',  _args.showAppInfoById);
 		self.add(tableview);
 

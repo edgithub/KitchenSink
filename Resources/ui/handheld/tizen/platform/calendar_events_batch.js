@@ -6,7 +6,7 @@ function events_batch(args) {
 	var self = Ti.UI.createWindow({
 			title: args.title
 		}),
-		calendar = tizen.calendar.getDefaultCalendar('EVENT'),
+		calendar = Ti.Tizen.Calendar.getDefaultCalendar('EVENT'),
 		data = [
 			{ title: 'Add three events', test: ADD_BATCH },
 			{ title: 'Update last three events', test: UPDATE_BATCH },
@@ -62,10 +62,13 @@ function events_batch(args) {
 			return ;
 		}
 
-		eventsArr[0] = new tizen.CalendarEvent({
+		eventsArr[0] = Ti.Tizen.createCalendarEvent({
 			summary : value,
-			startDate : tizen.time.getCurrentDateTime(),
-			duration : new tizen.TimeDuration(1, 'HOURS'),
+			startDate : Ti.Tizen.Time.getCurrentDateTime(),
+			duration : Ti.Tizen.createTimeDuration({
+				length: 1, 
+				unit: 'HOURS'
+			}),
 		});
 		eventsArr[1] = eventsArr[0].clone();
 		eventsArr[1].summary += ' copy 1';

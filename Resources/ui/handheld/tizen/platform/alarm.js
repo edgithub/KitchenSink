@@ -51,16 +51,16 @@ function tizen_alarm() {
 		},
 		tabView = Ti.UI.createTableView(tableViewOptions);
 
-	newAbsolute.addEventListener('click', function(){
+	newAbsolute.addEventListener('click', function() {
 		createAbsoluteAlarm();
 	});
 
-	newRelative.addEventListener('click', function(){
+	newRelative.addEventListener('click', function() {
 		createRelativeAlarm();
 	});
 
-	deleteAll.addEventListener('click', function(){
-		tizen.alarm.removeAll();
+	deleteAll.addEventListener('click', function() {
+		Ti.Tizen.Alarm.removeAll();
 		dictionary = [];
 		tabView.setData(dictionary);
 	});
@@ -171,7 +171,7 @@ function tizen_alarm() {
 		win.open();
 	}
 
-	function createPicker(){
+	function createPicker() {
 		var picker = Ti.UI.createPicker({
 			type: Ti.UI.PICKER_TYPE_DATE_AND_TIME,
 			selectionIndicator: true, // turn on the selection indicator (off by default)
@@ -181,16 +181,20 @@ function tizen_alarm() {
 		return picker;
 	}
 
-	function addAbsoluteAlarm(time, period){
+	function addAbsoluteAlarm(time, period) {
 		var period = Math.floor(period),
-			alarm = new tizen.AlarmAbsolute(time, period);
+			alarm = Ti.Tizen.Alarm.createAlarmAbsolute({
+				delay: time, 
+				period: period
+			});
+
 			dialog = Ti.UI.createAlertDialog({
 				cancel: 1,
 				buttonNames: ['Ok'],
 				title: 'Alarm'
 			});
 
-		tizen.alarm.add(alarm, 'org.tizen.browser');
+		Ti.Tizen.Alarm.add(alarm, 'org.tizen.browser');
 		dialog.message = 'Alarm has been successfuly added with id ' + alarm.id;
 		dialog.show();
 		addRow(alarm);
@@ -287,12 +291,12 @@ function tizen_alarm() {
 		win.add(notificationLabel);
 		win.add(winTitle);
 
-		saveButton.addEventListener('click', function(){
+		saveButton.addEventListener('click', function() {
 			addRelativeAlarm(sliderDelay.value, slider.value);
 			win.close();
 		});
 
-		cancelButton.addEventListener('click', function(){
+		cancelButton.addEventListener('click', function() {
 			win.close();
 		});
 
@@ -305,11 +309,14 @@ function tizen_alarm() {
 
 	}
 
-	function addRelativeAlarm(delay, period){
+	function addRelativeAlarm(delay, period) {
 		period = Math.floor(period);
 		delay = Math.floor(delay);
 
-		var alarm = new tizen.AlarmRelative(delay, period),
+		var alarm = Ti.Tizen.Alarm.createAlarmRelative({
+				delay: delay, 
+				period: period
+			}),
 			dialog = Ti.UI.createAlertDialog({
 				cancel: 1,
 				buttonNames: ['Ok'],
@@ -317,18 +324,20 @@ function tizen_alarm() {
 				title: 'Alarm'
 			});
 
-		tizen.alarm.add(alarm, 'org.tizen.clock');
+		Ti.Tizen.Alarm.add(alarm, 'org.tizen.clock');
+
 		dialog.show();
 		addRow(alarm);
 	}
 
-	function addRow(alarm){
+	function addRow(alarm) {
 		var row = createRow(alarm);
+		
 		dictionary.push(row);
 		tabView.setData(dictionary);
 	}
 
-	function createRow(alarm){
+	function createRow(alarm) {
 		var text1, 
 			text2, 
 			remaining,
@@ -357,11 +366,11 @@ function tizen_alarm() {
 				height: 50
 			});
 
-		if (alarm instanceof tizen.AlarmAbsolute) {
+		if (alarm instanceof Ti.Tizen.Alarm.AlarmAbsolute) {
 			remaining = alarm.getNextScheduledDate();
 			text1 = remaining.toDateString();
 			text2 = 'Absolute alarm (Period ' + alarm.period + ')';
-		} else if (alarm instanceof tizen.AlarmRelative) {
+		} else if (alarm instanceof Ti.Tizen.Alarm.AlarmRelative) {
 			text1 = alarm.delay + ' sec';
 			text2 = 'Relative alarm (Period ' + alarm.period + ')';
 		}
@@ -372,18 +381,17 @@ function tizen_alarm() {
 		childView.add(label1);
 		childView.add(label2);
 
-		button.addEventListener('click', function(){
+		button.addEventListener('click', function() {
 			var id = alarm.id,
 				i = 0,
 				len = dictionary.length;
 
-			try{
-				tizen.alarm.remove(alarm.id);
-			} catch(e){
-
-			}
-			for(; i < len; i++){
-				if(dictionary[i].alarmId === id){
+			try {
+				Ti.Tizen.Alarm.remove(alarm.id);
+			} catch(e) {}
+			
+			for(; i < len; i++) {
+				if (dictionary[i].alarmId === id) {
 					dictionary.splice(i, 1);
 					tabView.setData(dictionary);
 					break;

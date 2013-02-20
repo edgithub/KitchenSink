@@ -81,10 +81,15 @@ function smsHistory(args) {
 		}
 
 		if (services.length > 0) {
-			var smsService = services[0];
+			var smsService = services[0],
+				attributeFilter = Ti.Tizen.createAttributeFilter({
+					attributeName: 'type',
+					matchFlag: 'EXACTLY',
+					matchValue: serviceType
+				});
 
 			// Search for messages by filter
-			smsService.messageStorage.findMessages(new tizen.AttributeFilter('type', 'EXACTLY', serviceType), messagesListCB, errorCB);
+			smsService.messageStorage.findMessages(attributeFilter, messagesListCB, errorCB);
 		} else {
 			Ti.API.info('Exception has been thrown.');
 
@@ -102,7 +107,7 @@ function smsHistory(args) {
 		}).show();
 	}
 
-	tizen.messaging.getMessageServices(serviceType, serviceListCB, errorCB);
+	Ti.Tizen.Messaging.getMessageServices(serviceType, serviceListCB, errorCB);
 
 	return win;
 }

@@ -2,7 +2,7 @@ function edit_event(args) {
 	var self = Ti.UI.createWindow({
 			title: args.title
 		}),
-		calendar = tizen.calendar.getDefaultCalendar('EVENT'),
+		calendar = Ti.Tizen.Calendar.getDefaultCalendar('EVENT'),
 		calendarEvent = calendar.get(args.id),
 		startDate = calendarEvent.startDate,
 		labelLeftPos = 10,
@@ -116,8 +116,17 @@ function edit_event(args) {
 		try {
 			calendarEvent.summary = summary;
 			calendarEvent.description = description;
-			calendarEvent.startDate = new tizen.TZDate(d.yy, d.mm, d.dd, d.h, d.m);
-			calendarEvent.duration = new tizen.TimeDuration(1, 'HOURS');
+			calendarEvent.startDate = Ti.Tizen.createTZDate({
+				year: d.yy,
+				month: d.mm,
+				day: d.dd,
+				hours: d.h,
+				minutes: d.m
+			});
+			calendarEvent.duration = Ti.Tizen.createTimeDuration({
+				length: 1, 
+				unit: 'HOURS'
+			});
 			calendarEvent.location = location;
 
 			calendar.update(calendarEvent);

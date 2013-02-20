@@ -28,7 +28,7 @@ function tizen_apps_kill(_args) {
 	function _killAppInfoById(app) {
 		if (app.rowData && app.rowData.app_id) {
 			try {
-				appInfo = tizen.application.getAppInfo(app.rowData.app_id);
+				appInfo = Ti.Tizen.Application.getAppInfo(app.rowData.app_id);
 			} catch (error) {
 				_args.showErrorDialog(error, 'Could not call tizen.application.getAppInfo function');
 				return;
@@ -50,8 +50,8 @@ function tizen_apps_kill(_args) {
 				if (e.index === 0) {
 					Ti.API.info('Start to kill application with id = ' + checkedAppId);
 
-					tizen.application.kill(checkedAppId, function() {
-							// Succes callback
+					Ti.Tizen.Application.kill(checkedAppId, function() {
+							// Success callback
 							Ti.API.info('Application with ID = ' + checkedAppId + ' has been killed.');
 
 							tableview.deleteRow(app.index);
@@ -67,12 +67,11 @@ function tizen_apps_kill(_args) {
 		}
 	}
 
-	tizen.application.getAppsContext(onRunningAppsContext, _args.showErrorDialog);
+	Ti.Tizen.Application.getAppsContext(onRunningAppsContext, _args.showErrorDialog);
 
 	tableview.addEventListener('click', _killAppInfoById);
 	self.add(tableview);
 
 	return self;
-
 }
 module.exports = tizen_apps_kill;

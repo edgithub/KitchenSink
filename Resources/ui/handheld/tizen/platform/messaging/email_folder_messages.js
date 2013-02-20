@@ -117,8 +117,14 @@ function emailFolderMessages(args) {
 	try {
 		Ti.API.info('Start to find messages in ' + folderName + ' folder.');
 
+		var attributeFilter = Ti.Tizen.createAttributeFilter({
+			attributeName: 'folderId', 
+			matchFlag: 'EXACTLY',
+			matchValue: folderId
+		});
+		
 		// Remove selected message
-		emailService.messageStorage.findMessages(new tizen.AttributeFilter('folderId', 'EXACTLY', folderId), messagesFoundCB, errorCB);
+		emailService.messageStorage.findMessages(attributeFilter, messagesFoundCB, errorCB);
 	} catch (exc) {
 		Ti.API.info('Exception has been thrown when call findMessages function.');
 

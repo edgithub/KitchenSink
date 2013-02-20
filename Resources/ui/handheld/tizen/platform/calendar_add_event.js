@@ -2,7 +2,7 @@ function add_event(args) {
 	var self = Ti.UI.createWindow({
 			title: args.title
 		}),
-		calendar = tizen.calendar.getDefaultCalendar('EVENT'),
+		calendar = Ti.Tizen.Calendar.getDefaultCalendar('EVENT'),
 		labelLeftPos = 10,
 		labelWidth = '40%',
 		height = 30,
@@ -109,12 +109,21 @@ function add_event(args) {
 			location = locationInput.value.trim(),
 			d = getCalendarStartDate();
 
-		try {
-			calendar.add(new tizen.CalendarEvent({
+		try {		
+			calendar.add(Ti.Tizen.Calendar.createCalendarEvent({
 				description: description,
 				summary: summary,
-				startDate: new tizen.TZDate(d.yy, d.mm, d.dd, d.h, d.m),
-				duration: new tizen.TimeDuration(1, 'HOURS'),
+				startDate: Ti.Tizen.createTZDate({
+					year: d.yy,
+					month: d.mm,
+					day: d.dd,
+					hours: d.h,
+					minutes: d.m
+				}),
+				duration: Ti.Tizen.createTimeDuration({
+					length: 1, 
+					unit: 'HOURS'
+				}),
 				location: location
 			}));
 		} catch (err) {

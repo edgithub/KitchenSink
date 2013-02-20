@@ -32,7 +32,7 @@ function tizen_application(_args) {
 		if (e.rowData && e.rowData.app_id) {
 			var appInfo;
 			try {
-				appInfo = tizen.application.getAppInfo(e.rowData.app_id);
+				appInfo = Ti.Tizen.Application.getAppInfo(e.rowData.app_id);
 			} catch (error) {
 				_showErrorDialog(error, 'Could not call tizen.application.getAppInfo function');
 				return;

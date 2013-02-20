@@ -71,7 +71,7 @@ function smsSend(args) {
 			callBack && callBack();
 		}
 
-		tizen.messaging.getMessageServices(serviceType, servicesListCB, errorCB);
+		Ti.Tizen.Messaging.getMessageServices(serviceType, servicesListCB, errorCB);
 	}
 
 	// Check message data. Tizen function doesn't check it yet 
@@ -123,8 +123,16 @@ function smsSend(args) {
 			try {
 				Ti.API.info('Start to add draft message.');
 
-				// add draft sms
-				checkMessageData() && smsService.messageStorage.addDraftMessage(new tizen.Message(serviceType, { plainBody: textArea.value, to: [textField.value] }), draftMessageAdded, errorCB);
+				var msg = Ti.Tizen.Messaging.createMessage({
+					type: serviceType,
+					messageInitDict: { 
+						plainBody: textArea.value, 
+						to: [textField.value] 
+					}
+				});
+
+				// Add draft SMS
+				checkMessageData() && smsService.messageStorage.addDraftMessage(msg, draftMessageAdded, errorCB);
 			} catch (exc){
 				Ti.API.info('Exception has been thrown when try to add draft message');
 				errorCB(exc);
@@ -134,7 +142,7 @@ function smsSend(args) {
 		initSmsService(addDraftMessage);
 	});
 
-	// Send sms
+	// Send SMS
 	sendSMSBtn.addEventListener('click', function(e) {
 		function sendNewMessage() {
 			function messageSent(recipients) {
@@ -153,8 +161,16 @@ function smsSend(args) {
 			try {
 				Ti.API.info('Start to send message.');
 
-				// send new sms
-				smsService.sendMessage(new tizen.Message(serviceType, { plainBody: textArea.value, to: [textField.value] }), messageSent, errorCB);
+				var msg = Ti.Tizen.Messaging.createMessage({
+					type: serviceType,
+					messageInitDict: { 
+						plainBody: textArea.value, 
+						to: [textField.value] 
+					}
+				});
+				
+				// Send new SMS
+				smsService.sendMessage(msg, messageSent, errorCB);
 			} catch (exc){
 				Ti.API.info('Exception has been thrown when try to send message');
 

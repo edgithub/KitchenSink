@@ -2,7 +2,7 @@ function tizen_appscontext(_args) {
 	var self = Titanium.UI.createWindow();
 
 	//Return information available about a running application.
-	tizen.application.getAppsContext(function(contexts) {
+	Ti.Tizen.Application.getAppsContext(function(contexts) {
 		var data = [],
 			i = 0,
 			contextsCount = contexts.length,

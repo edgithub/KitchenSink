@@ -16,7 +16,7 @@ function tizen_exit_hide_launch(_args) {
 	// Call tizen.application.exit when button has been pressed
 	buttonExit.addEventListener('click', function() {
 		try {
-			tizen.application.exit();
+			Ti.Tizen.Application.exit();
 		} catch (e) {
 			_args.showErrorDialog(e, 'Could not Exit from KitchenSink');
 		}
@@ -34,7 +34,7 @@ function tizen_exit_hide_launch(_args) {
 	// Call tizen.application.exit when button has been pressed
 	buttonHide.addEventListener('click', function() {
 		try {
-			tizen.application.hide();
+			Ti.Tizen.Application.hide();
 		} catch (e) {
 			_args.showErrorDialog(e, 'Could not Hide KitchenSink');
 		}
@@ -48,10 +48,11 @@ function tizen_exit_hide_launch(_args) {
 		width: butttonWidth,
 		top: 3 * butttonHeightOffset + 2 * butttonHeight
 	});
+
 	// Call tizen.application.exit when button has been pressed
 	buttonLaunch.addEventListener('click', function() {
 		try {
-			tizen.application.launch(CALC_APP_ID);
+			Ti.Tizen.Application.launch(CALC_APP_ID);
 		} catch (e) {
 			_args.showErrorDialog(e, 'Could not Launch Calculator');
 		}
@@ -60,4 +61,5 @@ function tizen_exit_hide_launch(_args) {
 
 	return win;
 }
+
 module.exports = tizen_exit_hide_launch;
